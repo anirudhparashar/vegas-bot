@@ -8,6 +8,7 @@ from datetime import datetime
 import gvars
 from assetHandler import AssetHandler
 from pytz import timezone
+import sys
 
 # Global object we log to; the handler will work with any log message
 _L = logging.getLogger("demo")
@@ -111,7 +112,7 @@ def main():
     api = tradeapi.REST(gvars.API_KEY, gvars.API_SECRET_KEY, gvars.ALPACA_API_URL, api_version='v2')
 
     # initialize the asset handler
-    assHand = AssetHandler()
+    assHand = AssetHandler(int(sys.argv[1]))
 
     # get the Alpaca account ready
     # try:

@@ -14,7 +14,7 @@ from other_functions import *
 import gvars
 
 class AssetHandler:
-    def __init__(self):
+    def __init__(self, job_no):
         self.lockedAssets = set() # assets without a defined strategy
         self.tradeableAssets = set() # assets that may be traded today
         self.availableAssets = set() # assets availabe post filter
@@ -22,7 +22,7 @@ class AssetHandler:
         self.excludedAssets = {'SPCE'} # excluded assets (EXAMPLE)
 
         try:
-            self.rawAssets = set(pd.read_csv(gvars.RAW_ASSETS))
+            self.rawAssets = set(pd.read_csv(gvars.RAW_ASSETS+"_"+str(job_no)+".csv"))
             print("Raw assets loaded from csv correclty")
         except Exception as e:
             print("Could not load raw assets!")
@@ -49,7 +49,7 @@ class AssetHandler:
                 print('%i available assets, %i used assets, %i locked assets\n' % (len(self.availableAssets),len(self.usedAssets),len(self.lockedAssets)))
                 return chosenAsset
             except:
-                print('No more assets available, waiting for assets to be released...')
+                # print('No more assets available, waiting for assets to be released...')
                 time.sleep(60)
 
     def make_asset_available(self,ticker):

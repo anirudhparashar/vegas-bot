@@ -3,7 +3,7 @@
 from pathlib import Path
 from datetime import datetime
 
-MAX_WORKERS = 100 # max threads at a time
+MAX_WORKERS = 1000 # max threads at a time
 
 gainRatio = 1.5 # takeProfit = -stopLoss*gainRatio
 stopLossMargin = 0.05 # extra margin for the stop loss
@@ -68,5 +68,5 @@ sleepTimes = {
 home = str(Path.home())
 
 FILES_FOLDER = home + '/tbot_files_test/'
-RAW_ASSETS = './_raw_assets.csv' # you should have this list at the same folder than everything
+RAW_ASSETS = './_raw_assets' # you should have this list at the same folder than everything
 LOGS_PATH = FILES_FOLDER + 'logs/'
